@@ -28,19 +28,19 @@ spec:
       project: roboshop
       component: cart
       tier: app
-    template:
-      metadata:
-        labels:
-          project: roboshop
-          component: cart
-          tier: app
-      spec:
-        containers:
-        - name: cart
-          image: teja142/cart:optv1
-          envFrom:
-          - configMapRef:
-              name: cart
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        component: cart
+        tier: app
+    spec:
+      containers:
+      - name: cart
+        image: teja142/cart:optv1
+        envFrom:
+        - configMapRef:
+            name: cart
 ---
 apiVersion: v1
 kind: Service
