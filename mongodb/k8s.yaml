@@ -25,7 +25,7 @@ spec:
       - name: mongodb
         image: teja142/mongodb:optv1
 
-...
+---
 
 apiVersion: v1
 kind: Service
