@@ -16,18 +16,20 @@ kind: Deployment
 metadata:
   name: mysql
   namespace: roboshop
+  # deployment labels
   labels:
     component: mysql
     project: roboshop
     tier: database
 spec:
   replicas: 1
+  # These are the labels replica set use to create pod replicas, this should match pod labels
   selector:
     matchLabels:
-      labels:
-        component: mysql
-        project: roboshop
-        tier: database
+      component: mysql
+      project: roboshop
+      tier: database
+  # This is pod definition
   template:
     metadata:
       labels:
@@ -37,9 +39,9 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: teja142/mysql:optv1
+        image: joindevops/mysql:v1
         envFrom:
-        - SecretRef:
+        - secretRef:
             name: mysql
 ---
 apiVersion: v1
@@ -56,10 +58,7 @@ spec:
     component: mysql
     project: roboshop
     tier: database
-
   ports:
   - protocol: TCP
-    port: 3306  #servicePort
-    targetPort: 3306  #targetPort
-
-    
+    port: 3306 # service port
+    targetPort: 3306 # container port
